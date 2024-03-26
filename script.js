@@ -32,61 +32,52 @@ return 0;
 `;
 
 const a2 = `
-#include<stdio.h>
-struct routers
- {
- int dist[10],from[10];
- }r[10];
-int main()
-{
- int nodes,cost[10][10],i,j,k;
- printf("Enter the number of nodes: ");
- scanf("%d",&nodes);
- printf("\\nEnter the costs in terms of matrix:\\n");
- for(i=1;i<=nodes;i++)
- {
- for(j=1;j<=nodes;j++)
- {
- scanf("%d",&cost[i][j]);
- r[i].dist[j]=cost[i][j];
- r[i].from[j]=j;
- }
- }
- printf("\\nBefore distance vector algorithm\\n");
-for(i=1;i<=nodes;i++)
-{
- printf("\\n\\n For router: %d\\n",i);
- for(j=1;j<=nodes;j++)
- {
- printf("\\t\\nNode:%d Via:%d Distance:%d",j,r[i].from[j],r[i].dist[j]);
+
+
+#include <stdio.h>
+struct routers {
+  int dist[10], from[10];
+} r[10];
+int main() {
+  int nodes, cost[10][10], i, j, k;
+  printf("Enter the number of nodes: ");
+  scanf("%d", &nodes);
+  printf("\\nEnter the costs in terms of matrix:\\n");
+  for (i = 1; i <= nodes; i++) {
+    for (j = 1; j <= nodes; j++) {
+      scanf("%d", &cost[i][j]);
+      r[i].dist[j] = cost[i][j];
+      r[i].from[j] = j;
+    }
   }
+  printf("\\nBefore distance vector algorithm\\n");
+  for (i = 1; i <= nodes; i++) {
+    printf("\\n\\n For router: %d\\n", i);
+    for (j = 1; j <= nodes; j++) {
+      printf("\\t\\nNode:%d Via:%d Distance:%d", j, r[i].from[j], r[i].dist[j]);
+    }
+  }
+  for (i = 1; i <= nodes; i++) {
+    for (j = 1; j <= nodes; j++) {
+      for (k = 1; k <= nodes; k++) {
+        if (r[i].dist[j] > r[i].dist[k] + r[k].dist[j]) {
+          r[i].dist[j] = r[i].dist[k] + r[k].dist[j];
+          r[i].from[j] = k;
+        }
+      }
+    }
+  }
+  printf("\\n");
+  printf("\\n After distance vector algorithm");
+  for (i = 1; i <= nodes; i++) {
+    printf("\\n\\n For router: %d\\n", i);
+    for (j = 1; j <= nodes; j++) {
+      printf("\\t\\nNode:%d Via:%d Distance:%d", j, r[i].from[j], r[i].dist[j]);
+    }
+  }
+  printf("\\n\\n");
 }
-for(i=1;i<=nodes;i++)
-{
- for(j=1;j<=nodes;j++)
- {
- for(k=1;k<=nodes;k++)
- {
- if(r[i].dist[j]>r[i].dist[k]+r[k].dist[j])
- {
- r[i].dist[j]=r[i].dist[k]+r[k].dist[j];
- r[i].from[j]=k;
- }
- }
- }
-}
- printf("\\n");
- printf("\\n After distance vector algorithm");
- for(i=1;i<=nodes;i++)
- {
- printf("\\n\\n For router: %d\\n",i);
- for(j=1;j<=nodes;j++)
- {
- printf("\\t\\nNode:%d Via:%d Distance:%d",j,r[i].from[j],r[i].dist[j]);
- }
- }
- printf("\\n\\n");
-}
+
 
 `;
 
