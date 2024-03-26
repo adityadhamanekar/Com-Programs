@@ -32,8 +32,6 @@ return 0;
 `;
 
 const a2 = `
-
-
 #include <stdio.h>
 struct routers {
   int dist[10], from[10];
@@ -82,7 +80,6 @@ int main() {
 `;
 
 const a3 = `
-
 #include<stdio.h>
 #define Min(a,b) (a<b?a:b)
 int main()
@@ -187,7 +184,6 @@ int main() {
 `;
 
 const a5 = `
-
 #include <stdio.h>
 int min(int a, int b) { return a < b ? a : b; }
 
